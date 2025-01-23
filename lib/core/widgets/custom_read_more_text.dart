@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:products_screen/core/app_theme.dart';
+import 'package:products_screen/core/resources/app_theme.dart';
 import 'package:readmore/readmore.dart';
 
 class CustomReadMoreText extends StatelessWidget {
@@ -11,12 +11,12 @@ class CustomReadMoreText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReadMoreText(
-             text,
-              style: AppTheme.regularStyle,
-              trimLines: trimLines,
-              trimMode: TrimMode.Line,
-              trimCollapsedText: " ",
-             isExpandable: false,
-            );
+      text,
+      style: AppTheme.regularStyle,
+      trimLines: trimLines,
+      trimMode: TrimMode.Line,
+      trimCollapsedText: " ",
+      isExpandable: false,
+    );
   }
 }

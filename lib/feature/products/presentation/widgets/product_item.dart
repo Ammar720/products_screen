@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:products_screen/core/app_theme.dart';
-import 'package:products_screen/feature/products/presentation/widgets/custom_read_more_text.dart';
+import 'package:products_screen/core/resources/app_theme.dart';
+import 'package:products_screen/core/widgets/custom_read_more_text.dart';
+import 'package:products_screen/core/widgets/loading_indicator.dart';
+import 'package:products_screen/feature/products/domain/entities/products.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final Products product;
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +25,11 @@ class ProductItem extends StatelessWidget {
           Stack(
             children: [
               CachedNetworkImage(
-                imageUrl:
-                    'https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
+                imageUrl: product.image,
                 width: double.infinity,
                 height: screenheight * 0.1,
                 fit: BoxFit.contain,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) => const LoadingIndicator(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               Align(
@@ -43,26 +44,23 @@ class ProductItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomReadMoreText(
+                CustomReadMoreText(
                   trimLines: 1,
-                  text: 'White Gold Plated Princess',
+                  text: product.title,
                 ),
-                const CustomReadMoreText(
+                CustomReadMoreText(
                   trimLines: 1,
-                  text:
-                      'Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentines Day',
+                  text: product.description,
                 ),
                 SizedBox(height: screenheight * 0.004),
                 Row(
                   children: [
-                    Text('EGP 1,000 ', style: AppTheme.regularStyle),
-                    SizedBox(width: screenwidth * 0.04),
-                    Text('1,300 EGP', style: AppTheme.oldPrice),
+                    Text('${product.price} ', style: AppTheme.regularStyle),
                   ],
                 ),
                 Row(
                   children: [
-                    Text('Reviews (4.8) ',
+                    Text('Reviews (${product.rating.rate}) ',
                         style: AppTheme.regularStyle.copyWith(fontSize: 12)),
                     Icon(
                       Icons.star,

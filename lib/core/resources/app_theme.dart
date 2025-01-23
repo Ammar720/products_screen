@@ -14,10 +14,9 @@ class AppTheme {
     color: textColor,
   );
   static TextStyle oldPrice = const TextStyle(
-    fontSize: 11,
-    fontWeight: FontWeight.w400,
-    color: oldPriceColor,
-    decoration: TextDecoration.lineThrough,
-    decorationColor: oldPriceColor
-  );
+      fontSize: 11,
+      fontWeight: FontWeight.w400,
+      color: oldPriceColor,
+      decoration: TextDecoration.lineThrough,
+      decorationColor: oldPriceColor);
 }
